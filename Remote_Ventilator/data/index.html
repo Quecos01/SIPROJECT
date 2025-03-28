@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESP32 Web Control</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>ESP32 Remote Control</h1>
+    <h2>Temperature: <span id="temp">--</span>°C</h2>
+    
+    <div class="controls">
+        <button onclick="sendCommand('UP')">Up</button><br>
+        <button onclick="sendCommand('LEFT')">Left</button>
+        <button onclick="sendCommand('RIGHT')">Right</button><br>
+        <button onclick="sendCommand('DOWN')">Down</button>
+    </div>
+
+    <div class="led">
+        <button onclick="toggleLED('on')">Turn LED ON</button>
+        <button onclick="toggleLED('off')">Turn LED OFF</button>
+    </div>
+
+    <script>
+        function sendCommand(direction) {
+            fetch(`/servo?direction=${direction}`)
+                .then(response => console.log(response));
+        }
+
+        function toggleLED(state) {
+            fetch(`/led?state=${state}`)
+                .then(response => console.log(response));
+        }
+
+        function updateTemperature() {
+            fetch("/temperature")
+                .then(response => response.text())
+                .then(temp => document.getElementById("temp").innerText = temp);
+        }
+
+        setInterval(updateTemperature, 5000);
+    </script>
+</body>
+</html>

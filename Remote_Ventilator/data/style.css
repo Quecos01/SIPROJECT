@@ -1,0 +1,72 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Title */
+h1 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #555;
+    font-weight: normal;
+}
+
+/* Controls Container */
+.controls, .led {
+    margin: 20px auto;
+    padding: 15px;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: inline-block;
+}
+
+/* Buttons */
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    margin: 5px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Control Button Grid */
+.controls {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    max-width: 200px;
+}
+
+.controls button:nth-child(1) { grid-column: 2; } /* Up */
+.controls button:nth-child(2) { grid-column: 1; } /* Left */
+.controls button:nth-child(3) { grid-column: 3; } /* Right */
+.controls button:nth-child(4) { grid-column: 2; } /* Down */
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .controls {
+        max-width: 100%;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
